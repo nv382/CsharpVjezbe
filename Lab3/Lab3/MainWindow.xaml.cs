@@ -55,7 +55,7 @@ namespace Lab3
                         PozivPrimatelja.Text,
                         SifraNamjene.Text,
                         OpisPlacanja.Text,
-                        DatumIzvrsenja.Text);
+                        Datum.Text);
 
                 list.Add(uplatnica);
                 MessageBox.Show("Transakcija provedena!");

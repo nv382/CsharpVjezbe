@@ -26,9 +26,7 @@
         <Label Content="IBAN" HorizontalAlignment="Left" Margin="16,56,0,0" VerticalAlignment="Top" Width="68"/>
         <TextBox x:Name="IbanPlatitelja" HorizontalAlignment="Left" Margin="68,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Iznos" HorizontalAlignment="Left" Margin="16,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
-        <TextBox x:Name="DatumIzvrsenja" HorizontalAlignment="Left" Margin="416,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
         <TextBox x:Name="ModelPrimatelja" HorizontalAlignment="Left" Margin="405,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
-
         <TextBox x:Name="Model" HorizontalAlignment="Left" Margin="72,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="PozivNaBrojPlatitelja" HorizontalAlignment="Left" Margin="351,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
         <TextBox x:Name="IbanPrimatelja" HorizontalAlignment="Left" Margin="138,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -50,6 +48,7 @@
         <Label Content="Datum izvršenja" HorizontalAlignment="Left" Margin="284,293,0,0" VerticalAlignment="Top" Width="102"/>
         <Button x:Name="Provedi" Content="Provedi Placanje" HorizontalAlignment="Left" Margin="355,374,0,0" VerticalAlignment="Top" Click="Provedi_Click" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="Valute" HorizontalAlignment="Left" Margin="268,59,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="Datum"  HorizontalAlignment="Left" Margin="416,295,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
 
     </Grid>
 </Window>
