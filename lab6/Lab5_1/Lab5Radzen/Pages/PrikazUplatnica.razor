@@ -1,0 +1,49 @@
+﻿
+@page "/PrikazSvihUplatnica"
+@using Lab5Radzen.Data
+@using Radzen.Blazor
+@inject UplatnicaaaaService uplatnicaaaaService
+
+
+<h3>PrikazUplatnica</h3>
+
+@if (uplatnica == null)
+{
+    <p>LOADING.......</p>
+}
+else
+{
+    <RadzenGrid AllowPaging="true" AllowFiltering="true" FilterCaseSensitivity="Radzen.FilterCaseSensitivity.CaseInsensitive" PageSize="10" AllowSorting="true" Data="@uplatnica" TItem="Uplatnicaaa" ColumnWidth="150px">
+        <Columns>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="Id" Title="Uplatnica ID"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="Platitelj" Title="Platitelj"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="Primatelj" Title="Primatelj"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="IbanPlatitelja" Title="Iban Primatelja"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="IbanPrimatelja" Title="Primatelj Ime"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="Hitno" Title="Hitno"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="Valuta" Title="Valuta"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="Iznos" Title="Iznos"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="ModelPlatitelja" Title="Model Platitelja"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="PozivPlatitelja" Title="Poziv Platitelja"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="ModelPrimatelja" Title="Model Primatelja"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="PozivNaBrojPrimatelja" Title="Poziv Na Broj Primatelja"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="SifraNamjene" Title="Sifra Namjene"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="OpisPlacanja" Title="Opis Placanja"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="DatumIzvrsenja" Title="Datum Izvrsenja"></RadzenGridColumn>
+            <RadzenGridColumn TItem="Uplatnicaaa" Property="SrednjiTecaj" Title="Srednji Tecaj"></RadzenGridColumn>
+            <template contextmenu = "data">
+
+            </template>
+        </Columns>
+
+    </RadzenGrid>
+}
+
+@code {
+    IEnumerable<Uplatnicaaa> uplatnica;
+    protected override async Task OnInitializedAsync(){
+        uplatnica = await Task.Run(() => uplatnicaaaaService.GetUplatnicee());
+    }
+
+
+}

@@ -1,0 +1,106 @@
+﻿@page "/uplatnica/{id}"
+@inject lab6.Data.IUplatnicaService UplatnicaService;
+@inject NavigationManager Navigation;
+<h3>Edit Uplatnica</h3>
+
+<EditForm Model="uplatnica" OnSubmit="SubmitForm">
+    <div class="form-group">
+        <label>Id</label>
+        <input id="id" class="form-control" name="id" value="@uplatnica.Id" readonly/>
+    </div>
+    <div class="form-group">
+        <label>Platitelj</label>
+        <InputText id="platitelj" class="form-control" name="platitelj" @bind-Value="uplatnica.Platitelj"/>
+    </div>
+    <div class="form-group">
+        <label>Primatelj</label>
+        <InputText id="primatelj" class="form-control" name="primatelj" @bind-Value="uplatnica.Primatelj"/>
+    </div>
+    <div class="form-group">
+        <label>Iban Platitelja</label>
+        <InputText id="ibanplatitelja" class="form-control" name="ibanplatitelja" @bind-Value="uplatnica.IbanPlatitelja"/>
+    </div>
+    <div class="form-group">
+        <label>Iban Primatelja</label>
+        <InputText id="ibanprimatelja" class="form-control" name="ibanprimatelja" @bind-Value="uplatnica.IbanPrimatelja"/>
+    </div>
+    <div class="form-group">
+        <label>Hitno</label>
+        <InputText id="hitno" class="form-control" name="hitno" @bind-Value="uplatnica.Hitno"/>
+    </div>
+    <div class="form-group">
+        <label>Valuta</label>
+        <InputText id="valuta" class="form-control" name="valuta" @bind-Value="uplatnica.Valuta"/>
+    </div>
+    <div class="form-group">
+        <label>Iznos</label>
+        <InputText id="iznos" class="form-control" name="iznos" @bind-Value="uplatnica.Iznos"/>
+    </div>
+    <div class="form-group">
+        <label>Model Platitelja</label>
+        <InputText id="modelplatitelja" class="form-control" name="modelplatitelja" @bind-Value="uplatnica.ModelPlatitelja"/>
+    </div>
+    <div class="form-group">
+        <label>Poziv Na Broj Platitelja</label>
+        <InputText id="pozivplatitelja" class="form-control" name="pozivplatitelja" @bind-Value="uplatnica.PozivPlatitelja"/>
+    </div>
+    <div class="form-group">
+        <label>Model Primatelja</label>
+        <InputText id="modelprimatelja" class="form-control" name="modelprimatelja" @bind-Value="uplatnica.ModelPrimatelja"/>
+    </div>
+    <div class="form-group">
+        <label>Poziv Na Broj Primatelja</label>
+        <InputText id="pozivnabrojprimatelja" class="form-control" name="pozivnabrojprimatelja" @bind-Value="uplatnica.PozivNaBrojPrimatelja"/>
+    </div>
+    <div class="form-group">
+        <label>Sifra Namjene</label>
+        <InputText id="sifranamjene" class="form-control" name="sifranamjene" @bind-Value="uplatnica.SifraNamjene"/>
+    </div>
+    <div class="form-group">
+        <label>Opis Placanja</label>
+        <InputText id="opisplacanja" class="form-control" name="opisplacanja" @bind-Value="uplatnica.OpisPlacanja"/>
+    </div>
+    <div class="form-group">
+        <label>Datum Izvrsenja</label>
+        <InputText id="datumizvrsenja" class="form-control" name="datumizvrsenja" @bind-Value="uplatnica.DatumIzvrsenja"/>
+    </div>
+    <div class="form-group">
+        <label>Srednji Tecaj</label>
+        <InputText id="srednjitecaj" class="form-control" name="srednjitecaj" @bind-Value="uplatnica.SrednjiTecaj"/>
+    </div>
+    <button type="submit" class"btn btn-primary">Update</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    private lab6.Data.Uplatnica uplatnica { get; set; }
+
+    protected override void OnInitialized()
+    {
+        int id = Int32.Parse(Id);
+        if (!string.IsNullOrEmpty(Id) & Id == "0")
+        {
+            uplatnica = new Data.Uplatnica();
+        }
+        else
+        {
+            uplatnica = UplatnicaService.GetUplatnica(id);
+        }
+    }
+
+    private void SubmitForm()
+    {
+        if(uplatnica.Id == 0)
+        {
+            UplatnicaService.AddUplatnica(uplatnica);
+        }
+        else
+        {
+            UplatnicaService.UpdateUplatnica(uplatnica);
+        }
+        
+        Navigation.NavigateTo("uplatnice");
+    }
+}

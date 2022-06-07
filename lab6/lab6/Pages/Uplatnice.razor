@@ -1,0 +1,77 @@
+﻿@page "/uplatnice"
+<h3>Uplatnice</h3>
+
+@inject lab6.Data.IUplatnicaService UplatnicaService;
+
+<a href="uplatnica/0">Add Uplatnica</a>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Platitelj</td>
+            <td>Primatelj</td>
+            <td>IbanPlatitelja</td>
+            <td>IbanPrimatelja</td>
+            <td>Hitno</td>
+            <td>Valuta</td>
+            <td>Iznos</td>
+            <td>ModelPlatitelja</td>
+            <td>PozivPlatitelja</td>
+            <td>ModelPrimatelja</td>
+            <td>PozivNaBrojPrimatelja</td>
+            <td>SifraNamjene</td>
+            <td>OpisPlacanja</td>
+            <td>DatumIzvrsenja</td>
+            <td>SrednjiTecaj</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var uplatnica in uplatnicas)
+        {
+            <tr>
+
+                <td>@uplatnica.Id</td>
+                <td>@uplatnica.Platitelj</td>
+                <td>@uplatnica.Primatelj</td>
+                <td>@uplatnica.IbanPlatitelja</td>
+                <td>@uplatnica.IbanPrimatelja</td>
+                <td>@uplatnica.Hitno</td>
+                <td>@uplatnica.Valuta</td>
+                <td>@uplatnica.Iznos</td>
+                <td>@uplatnica.ModelPlatitelja</td>
+                <td>@uplatnica.PozivPlatitelja</td>
+                <td>@uplatnica.ModelPrimatelja</td>
+                <td>@uplatnica.PozivNaBrojPrimatelja</td>
+                <td>@uplatnica.SifraNamjene</td>
+                <td>@uplatnica.OpisPlacanja</td>
+                <td>@uplatnica.DatumIzvrsenja</td>
+                <td>@uplatnica.SrednjiTecaj</td>
+                <td>
+                    <a href="uplatnica/@uplatnica.Id">
+                        Edit
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-primary" @onclick= "@(e=> OnDelete(uplatnica.Id))">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private List<lab6.Data.Uplatnica> uplatnicas;
+
+    protected override void OnInitialized()
+    {
+        uplatnicas = UplatnicaService.GetUplatnicas();
+    }
+
+    private void OnDelete(int id)
+    {
+        UplatnicaService.DeleteUplatnica(id);
+    }
+
+}
